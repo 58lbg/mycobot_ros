@@ -14,7 +14,7 @@
 <!-- 	<node name="joint_state_publisher_gui" pkg="joint_state_publisher_gui" type="joint_state_publisher_gui">  -->
 		<!-- <param name="use_gui" value="$(arg gui)" />	 -->
 		<!-- <rosparam param="source_list" subst_value="true">["joint_states"]</rosparam> -->
-	</node>
+<!-- 	</node> -->
 	<!-- Open control script -->
 	<!-- <node name="control_slider" pkg="mycobot_280pi" type="slider_control.py"> 
 		<param name="port" type="string" value="$(arg port)" />
