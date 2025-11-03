@@ -12,7 +12,7 @@
 	<!-- Combinejoin values to TF ，将值合并到TF-->
 	<node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" />
 	<!-- Show in Rviz ，显示在Rviz-->
-	<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" />
+<!-- 	<node name="rviz" pkg="rviz" type="rviz" args="-d $(arg rvizconfig)" required="true" /> -->
 
     <include file="$(find mycobot_communication)/launch/communication_topic_pi.launch">
 		<arg name="port" value="$(arg port)" />	
