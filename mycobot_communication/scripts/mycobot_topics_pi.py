@@ -364,7 +364,7 @@ class MycobotTopics(object):
             elif action == "nod":
                 self.do_nod()
             elif action == "shake":
-                self.do_nod()
+                self.do_shake()
             else:
                 rospy.logwarn(f"未识别的动作指令: {action}")
 
