@@ -374,9 +374,9 @@ class MycobotTopics(object):
         # 设置开始开始时间
         start = time.time()
         # 让机械臂到达指定位置
-        self.mc.send_angles([-1.49, 115, -153.45, 30, -33.42, 137.9], 80)
+        self.mc.send_angles([-1.49, 115, -147.45, 30, -33.42, 137.9], 80)
         # 判断其是否到达指定位置
-        while not self.mc.is_in_position([-1.49, 115, -153.45, 30, -33.42, 137.9], 0):
+        while not self.mc.is_in_position([-1.49, 115, -147.45, 30, -33.42, 137.9], 0):
             # 让机械臂恢复运动
             self.mc.resume()
             # 让机械臂移动0.5s
@@ -391,12 +391,12 @@ class MycobotTopics(object):
         # 让运动持续30秒
         while time.time() - start < 30:
             # 让机械臂快速到达该位置
-            self.mc.send_angles([-1.49, 115, -153.45, 30, -33.42, 137.9], 80)
+            self.mc.send_angles([-1.49, 115, -147.45, 30, -33.42, 137.9], 80)
             # 将灯的颜色为[0,0,50]
             self.mc.set_color(0, 0, 50)
             time.sleep(0.7)
             # 让机械臂快速到达该位置
-            self.mc.send_angles([-1.49, 55, -153.45, 80, 33.42, 137.9], 80)
+            self.mc.send_angles([-1.49, 55, -147.45, 80, 33.42, 137.9], 80)
             # 将灯的颜色为[0,50,0]
             self.mc.set_color(0, 50, 0)
             time.sleep(0.7)
