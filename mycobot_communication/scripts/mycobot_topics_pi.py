@@ -352,6 +352,14 @@ class MycobotTopics(object):
                         servo_temperature, atom_version)
         )
 
+    """
+        这里有/mycobot/robot_action话题用于控制机械臂做各种动作，
+        wave：跳舞
+        sway：挥手
+        nod：点头
+        shake：摇头
+        每个动作都是完整的动作，不要重复调用，只发一次消息就可以了。后面说啥做啥
+    """
     def sub_robot_action(self):
         def callback(data):
             action = data.data.strip().lower()
