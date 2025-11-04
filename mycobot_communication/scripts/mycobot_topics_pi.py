@@ -129,6 +129,8 @@ class MycobotTopics(object):
         str = threading.Thread(target=self.sub_set_tool_reference)
         sgv = threading.Thread(target=self.sub_real_gripper_value)
 
+        ra = threading.Thread(target=self.sub_robot_action)
+
         pa.setDaemon(True)
         pa.start()
         pb.setDaemon(True)
@@ -151,6 +153,9 @@ class MycobotTopics(object):
         sgv.setDaemon(True)
         sgv.start()
 
+        ra.setDaemon(True)
+        ra.start()
+
         pa.join()
         pb.join()
         sa.join()
@@ -162,6 +167,8 @@ class MycobotTopics(object):
         set.join()
         str.join()
         sgv.join()
+
+        ra.join()
 
     def pub_real_angles(self):
         """Publish real angle"""
