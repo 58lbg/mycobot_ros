@@ -444,9 +444,9 @@ class MycobotTopics(object):
         self.mc.send_angles([0, 0, 0, 0, 0, 0], 30)
         rospy.sleep(0.3)
         for i in range(2):
-            self.mc.send_angles([0, 0, 0, 0, -30, 0], 30)
+            self.mc.send_angles([0, 0, 0, 0, -60, 0], 30)
             rospy.sleep(0.5)
-            self.mc.send_angles([0, 0, 0, 0, 30, 0], 30)
+            self.mc.send_angles([0, 0, 0, 0, 60, 0], 30)
             rospy.sleep(0.5)
         self.mc.send_angles([0, 0, 0, 0, 0, 0], 30)
         rospy.sleep(0.3)
