@@ -400,6 +400,8 @@ class MycobotTopics(object):
             # 将灯的颜色为[0,50,0]
             self.mc.set_color(0, 50, 0)
             time.sleep(0.7)
+        self.mc.send_angles([0, 0, 0, 0, 0, 0], 30)
+        rospy.sleep(1)
 
     def do_sway(self):
         rospy.loginfo("执行摇摆动作")
