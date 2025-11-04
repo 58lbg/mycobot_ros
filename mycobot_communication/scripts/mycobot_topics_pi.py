@@ -145,7 +145,7 @@ class MycobotTopics(object):
         sp.start()
         
         sfm.setDaemon(True)
-        sfm.start
+        sfm.start()
         set.setDaemon(True)
         set.start()
         str.setDaemon(True)
