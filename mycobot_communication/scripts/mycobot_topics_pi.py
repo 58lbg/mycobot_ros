@@ -429,26 +429,26 @@ class MycobotTopics(object):
 
     def do_nod(self):
         rospy.loginfo("执行点头")
-        self.mc.send_angles([0, 0, 0, 0, 0, 0], 30)
+        self.mc.send_angles([0, 0, 0, 0, 0, 0], 50)
         rospy.sleep(0.3)
         for i in range(2):
-            self.mc.send_angles([0, 0, 0, -30, 0, 0], 30)
+            self.mc.send_angles([0, 0, 0, -30, 0, 0], 50)
             rospy.sleep(1)
-            self.mc.send_angles([0, 0, 0, 30, 0, 0], 30)
+            self.mc.send_angles([0, 0, 0, 30, 0, 0], 50)
             rospy.sleep(1)
-        self.mc.send_angles([0, 0, 0, 0, 0, 0], 30)
+        self.mc.send_angles([0, 0, 0, 0, 0, 0], 50)
         rospy.sleep(0.3)
 
     def do_shake(self):
         rospy.loginfo("执行摇头")
-        self.mc.send_angles([0, 0, 0, 0, 0, 0], 30)
+        self.mc.send_angles([0, 0, 0, 0, 0, 0], 50)
         rospy.sleep(0.3)
         for i in range(2):
-            self.mc.send_angles([0, 0, 0, 0, -60, 0], 30)
+            self.mc.send_angles([0, 0, 0, 0, -60, 0], 50)
             rospy.sleep(1)
-            self.mc.send_angles([0, 0, 0, 0, 60, 0], 30)
+            self.mc.send_angles([0, 0, 0, 0, 60, 0], 50)
             rospy.sleep(1)
-        self.mc.send_angles([0, 0, 0, 0, 0, 0], 30)
+        self.mc.send_angles([0, 0, 0, 0, 0, 0], 50)
         rospy.sleep(0.3)
 
 
