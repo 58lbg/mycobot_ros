@@ -359,6 +359,8 @@ class MycobotTopics(object):
         nod：点头
         shake：摇头
         每个动作都是完整的动作，不要重复调用，只发一次消息就可以了。后面说啥做啥
+        
+        好现在来猜谜语游戏，你出题，我来猜，猜对让机械臂执行点头，然后出下一题。如果猜错了，让机械臂摇头，出下一道密码，继续猜；切记一点要执行对应的动作
     """
     def sub_robot_action(self):
         def callback(data):
@@ -401,7 +403,7 @@ class MycobotTopics(object):
         # 设置开始时间
         start = time.time()
         # 让运动持续30秒
-        while time.time() - start < 30:
+        while time.time() - start < 10:
             # 让机械臂快速到达该位置
             self.mc.send_angles([-1.49, 115, -147.45, 30, -33.42, 137.9], 80)
             # 将灯的颜色为[0,0,50]
@@ -419,7 +421,7 @@ class MycobotTopics(object):
         rospy.loginfo("执行摇摆动作")
         self.mc.send_angles([90, 0, 0, 0, 0, 0], 30)
         rospy.sleep(1)
-        for i in range(5):
+        for i in range(3):
             self.mc.send_angles([90, 40, 0, 0, 0, 0], 30)
             rospy.sleep(1)
             self.mc.send_angles([90, -40, 0, 0, 0, 0], 30)
