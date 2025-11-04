@@ -7,6 +7,7 @@ import signal
 import threading
 
 import rospy
+from std_msgs.msg import String
 
 from mycobot_communication.msg import (
     MycobotAngles,
@@ -343,6 +344,69 @@ class MycobotTopics(object):
             robot_msg % (connect_status, servo_infomation,
                         servo_temperature, atom_version)
         )
+
+    def sub_robot_action(self):
+        def callback(data):
+            action = data.data.strip().lower()
+            rospy.loginfo(f"收到机器人动作指令: {action}")
+
+            if action == "wave":
+                self.do_wave()
+            elif action == "sway":
+                self.do_sway()
+            else:
+                rospy.logwarn(f"未识别的动作指令: {action}")
+
+        rospy.Subscriber(
+            "mycobot/robot_action", String, callback=callback
+        )
+        rospy.spin()
+
+    def do_wave(self):
+        rospy.loginfo("执行挥手动作")
+        # 设置开始开始时间
+        start = time.time()
+        # 让机械臂到达指定位置
+        self.mc.send_angles([-1.49, 115, -153.45, 30, -33.42, 137.9], 80)
+        # 判断其是否到达指定位置
+        while not self.mc.is_in_position([-1.49, 115, -153.45, 30, -33.42, 137.9], 0):
+            # 让机械臂恢复运动
+            self.mc.resume()
+            # 让机械臂移动0.5s
+            time.sleep(0.5)
+            # 暂停机械臂移动
+            self.mc.pause()
+            # 判断移动是否超时
+            if time.time() - start > 3:
+                break
+        # 设置开始时间
+        start = time.time()
+        # 让运动持续30秒
+        while time.time() - start < 30:
+            # 让机械臂快速到达该位置
+            self.mc.send_angles([-1.49, 115, -153.45, 30, -33.42, 137.9], 80)
+            # 将灯的颜色为[0,0,50]
+            self.mc.set_color(0, 0, 50)
+            time.sleep(0.7)
+            # 让机械臂快速到达该位置
+            self.mc.send_angles([-1.49, 55, -153.45, 80, 33.42, 137.9], 80)
+            # 将灯的颜色为[0,50,0]
+            self.mc.set_color(0, 50, 0)
+            time.sleep(0.7)
+
+    def do_sway(self):
+        rospy.loginfo("执行摇摆动作")
+        self.mc.send_angles([90, 0, 0, 0, 0, 0], 30)
+        rospy.sleep(1)
+        for i in range(5):
+            self.mc.send_angles([90, 40, 0, 0, 0, 0], 30)
+            rospy.sleep(1)
+            self.mc.send_angles([90, -40, 0, 0, 0, 0], 30)
+            rospy.sleep(1)
+        self.mc.send_angles([0, 0, 0, 0, 0, 0], 30)
+        rospy.sleep(1)
+
+
 
 
 if __name__ == "__main__":
